@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault();
     const user = await loginUser(email, password);
     if (user) {
-      navigate("/home ");
+      navigate("/", { state: { message: "Login Successful!" } });
     } else {
       setError("Login failed. Please check your credentials.");
     }

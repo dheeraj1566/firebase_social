@@ -1,28 +1,46 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import { getCurrentUser } from "./Authentication/auth";
 import Home from "./components/Home";
+import ProtectedRoute from "./components/ProtectedRoute";
+import First from "./First";
 
-function App() {
-  const currentUser = getCurrentUser();
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <First />, 
+    children: [
+      {
+        index:true,
+        element: (
+         <ProtectedRoute>
+          <Home />
+         </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/login", 
+        element:
+          <Login />
+      },
+      {
+        path:"/register",
+        element:<Register />
+      },
+      {
+        path:"/register",
+        element:(
+        <ProtectedRoute>
+          <Register />
+        </ProtectedRoute>)
+      }
+    ],
+  },
+]);
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        
-        <Route
-          path="/home"
-          element={currentUser ? <Home /> : <Login />} 
-        />
-        
-        <Route path="/" element={<Login />} />
-      </Routes>
-    </Router>
-  );
-}
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
