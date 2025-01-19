@@ -1,0 +1,37 @@
+import React from 'react';
+import {CloudinaryContext} from 'react-cloudinary-upload-widget'
+
+const CloudinaryUpload = ({ onUploadSuccess, buttonText, buttonClass, cloudName, uploadPreset }) => {
+  const handleUpload = (result) => {
+    if (result.event === 'success') {
+      const uploadedUrl = result.info.secure_url; // Get the URL of the uploaded image
+      onUploadSuccess(uploadedUrl); // Call the passed callback with the uploaded URL
+    }
+  };
+
+  return (
+    <CloudinaryContext cloudName={cloudName}>
+      <button
+        className={buttonClass}
+        onClick={() =>
+          window.cloudinary.openUploadWidget(
+            {
+              cloudName: cloudName,
+              uploadPreset: uploadPreset,
+              sources: ['local', 'url', 'camera'],
+              showAdvancedOptions: false,
+              cropping: true,
+              multiple: false,
+              defaultSource: 'local',
+            },
+            handleUpload
+          )
+        }
+      >
+        {buttonText}
+      </button>
+    </CloudinaryContext>
+  );
+};
+
+export default CloudinaryUpload;

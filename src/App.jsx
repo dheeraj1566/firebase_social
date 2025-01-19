@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import First from "./First";
+import ProfileEdit from "./components/ProfileEdit";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
         path: "/login", 
         element:
           <Login />
+      },
+      {
+        path: "/profile/edit", 
+        element:
+          <ProfileEdit />
       },
       {
         path:"/register",
