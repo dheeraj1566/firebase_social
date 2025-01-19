@@ -4,8 +4,8 @@ import {CloudinaryContext} from 'react-cloudinary-upload-widget'
 const CloudinaryUpload = ({ onUploadSuccess, buttonText, buttonClass, cloudName, uploadPreset }) => {
   const handleUpload = (result) => {
     if (result.event === 'success') {
-      const uploadedUrl = result.info.secure_url; // Get the URL of the uploaded image
-      onUploadSuccess(uploadedUrl); // Call the passed callback with the uploaded URL
+      const uploadedUrl = result.info.secure_url; 
+      onUploadSuccess(uploadedUrl);
     }
   };
 

@@ -1,8 +1,6 @@
-// ProfileEdit.js
 import React, { useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import {db, addDoc, users} from '../Firebase'
-// import CloudinaryUpload from './CloudinaryUpload'; 
 import CloudinaryUpload from '../Cloudinary/CloudinaryUplaod'
 
 function ProfileEdit() {
@@ -37,7 +35,6 @@ function ProfileEdit() {
             alt="Cover"
             className="w-full h-full object-cover"
           />
-          {/* CloudinaryUpload for Cover Photo */}
           <CloudinaryUpload
             onUploadSuccess={handleCoverUploadSuccess}
             buttonText="Change Cover Photo"
@@ -50,11 +47,10 @@ function ProfileEdit() {
 
       <div className="relative flex mt-16">
         <img
-          src={profilePhoto || './assets/default-profile.jpg'} // Placeholder if no photo uploaded
+          src={profilePhoto || './assets/default-profile.jpg'}
           alt="Profile"
           className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
         />
-        {/* CloudinaryUpload for Profile Photo */}
         <CloudinaryUpload
           onUploadSuccess={handleProfileUploadSuccess}
           buttonText="Change Profile Photo"
